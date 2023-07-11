@@ -1,30 +1,33 @@
 import {Context} from '../index';
 import { useContext } from 'react';
 import { MAIN_PAGE_ROUTE } from '../utils/consts';
-import { observable } from 'mobx';
-import { NavLink } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 
-const NavBar = () => {
+import logo from '../style/icons/logo.svg';
+import likes from '../style/icons/likes.svg';
+import cabinet from '../style/icons/cabinet.svg';
+import basket from '../style/icons/basket.svg';
+
+const NavBar = observer(() => {
     const {user} = useContext(Context)
     return (
-        <NavBar>
-        <header class="header">
-        <div class="container">
-            <div class="header__top">
-                <nav class="header__menu">
-                    <ul class="header__menu_list">
-                        <li class="header__menu_item">
+        <header className="header">
+        <div className="container">
+            <div className="header__top">
+                <nav className="header__menu">
+                    <ul className="header__menu_list">
+                        <li className="header__menu_item">
                             <Link className="header__menu_link" to='/'>
                                 магазины
                             </Link>
                         </li>
-                        <li class="header__menu_item">
+                        <li className="header__menu_item">
                             <Link className="header__menu_link" to='/'>
                                 акции
                             </Link>
                         </li>
-                        <li class="header__menu_item">
+                        <li className="header__menu_item">
                             <Link className="header__menu_link" to='/'>
                                 доставка и оплата
                             </Link>
@@ -33,79 +36,79 @@ const NavBar = () => {
                 </nav>
 
                 <Link className="logo" to={MAIN_PAGE_ROUTE}>
-                    <img className="logo__img" src="style/icons/logo.svg" alt="logo"/>
+                    <img className="logo__img" src={logo} alt="logo"/>
                 </Link>
 
-                <div class="header__box">
-                    <p class="header__adress">
+                <div className="header__box">
+                    <p className="header__adress">
                         Самара, ул. Авроры 13
                     </p>
                     {user.isAuth ?
-                        <ul class="user__list">
-                            <li class="user__list-item">
+                        <ul className="user__list">
+                            <li className="user__list-item">
                                 <Link className="user__list-link" to='/likes'>
-                                    <img src="../style/icons/likes.svg" alt="Избранное"/>
+                                    <img src={likes} alt="Избранное"/>
                                 </Link>
                             </li>
-                            <li class="user__list-item">
+                            <li className="user__list-item">
                                 <Link className="user__list-link" to='/cabinet'>
-                                    <img src="../style/icons/cabinet.svg" alt="Кабинет"/>
+                                    <img src={cabinet} alt="Кабинет"/>
                                 </Link>
                             </li>
-                            <li class="user__list-item">
-                                <Link className="user__list-link basket" href="#">
-                                    <img src="../style/icons/basket.svg" alt="Корзина"/>
+                            <li className="user__list-item">
+                                <Link className="user__list-link basket" to='/basket'>
+                                    <img src={basket} alt="Корзина"/>
                                     <p className="basket__num">17</p>
                                 </Link>
                             </li>
                         </ul>
                     :
-                    <a class="user__list-link" href='#' onClick={() => user.setIsAuth(true)}>
+                    <a className="user__list-link" href='#' onClick={() => user.setIsAuth(true)}>
                         <img src="../style/icons/cabinet.svg" alt="Вход"/>
                     </a>
                     }
                 </div>
             </div>
         
-            <div class="header__bottom">
-                <ul class="menu-categories">
-                    <li class="menu-categories__item">
-                        <a class="menu-categories__link" href="#">
+            <div className="header__bottom">
+                <ul className="menu-categories">
+                    <li className="menu-categories__item">
+                        <a className="menu-categories__link" href="#">
                             Квадроциклы
                         </a>
                     </li>
-                    <li class="menu-categories__item">
-                        <a class="menu-categories__link" href="#">
+                    <li className="menu-categories__item">
+                        <a className="menu-categories__link" href="#">
                             Катера
                         </a>
                     </li>
-                    <li class="menu-categories__item">
-                        <a class="menu-categories__link" href="#">
+                    <li className="menu-categories__item">
+                        <a className="menu-categories__link" href="#">
                             Гидроциклы
                         </a>
                     </li>
-                    <li class="menu-categories__item">
-                        <a class="menu-categories__link" href="#">
+                    <li className="menu-categories__item">
+                        <a className="menu-categories__link" href="#">
                             Лодки
                         </a>
                     </li>
-                    <li class="menu-categories__item">
-                        <a class="menu-categories__link" href="#">
+                    <li className="menu-categories__item">
+                        <a className="menu-categories__link" href="#">
                             Вездеходы
                         </a>
                     </li>
-                    <li class="menu-categories__item">
-                        <a class="menu-categories__link" href="#">
+                    <li className="menu-categories__item">
+                        <a className="menu-categories__link" href="#">
                             Снегоходы
                         </a>
                     </li>
-                    <li class="menu-categories__item">
-                        <a class="menu-categories__link" href="#">
+                    <li className="menu-categories__item">
+                        <a className="menu-categories__link" href="#">
                             Двигатели
                         </a>
                     </li>
-                    <li class="menu-categories__item">
-                        <a class="menu-categories__link" href="#">
+                    <li className="menu-categories__item">
+                        <a className="menu-categories__link" href="#">
                             Запчасти
                         </a>
                     </li>
@@ -113,8 +116,7 @@ const NavBar = () => {
             </div>
         </div>
     </header>
-    </NavBar>
     );
-};
+});
 
 export default NavBar;

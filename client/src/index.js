@@ -15,5 +15,5 @@ root.render(
 		  product: new ProductStore(),
 	}}>
       <App />
-    </Context.Provider>,
+    </Context.Provider>
 );
